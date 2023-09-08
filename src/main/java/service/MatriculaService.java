@@ -20,23 +20,23 @@ public class MatriculaService {
             e.printStackTrace();
         }
     }
-    public void inserirMatricula(int idAluno, int idCurso, LocalDate dataMatricula) {
-        String sql = "INSERT INTO matriculas (IDAluno, IDCurso, DataMatricula) VALUES (" +
-                idAluno + ", " + idCurso + ", '" + dataMatricula + "')";
+    public void inserirMatricula(int id_aluno, int id_curso, LocalDate dataMatricula) {
+        String sql = "INSERT INTO matriculas (id_aluno, id_curso, DataMatricula) VALUES (" +
+                id_aluno + ", " + id_curso + ", '" + dataMatricula + "')";
         try {
             statement.executeUpdate(sql);
-            System.out.println("Matrícula do Aluno ID " + idAluno +
-                    " no Curso ID " + idCurso + " foi adicionada com sucesso!");
+            System.out.println("Matrícula do Aluno ID " + id_aluno +
+                    " no Curso ID " + id_curso + " foi adicionada com sucesso!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
     public void consultarTodasMatriculas() {
-        String sql = "SELECT matriculas.ID, alunos.Nome AS NomeAluno, cursos.NomeCurso" +
-                " AS NomeCurso, matriculas.DataMatricula " +
+        String sql = "SELECT matriculas.ID, " +
+                "alunos.Nome AS NomeAluno, cursos.NomeCurso AS NomeCurso, matriculas.DataMatricula " +
                 "FROM matriculas " +
-                "INNER JOIN alunos ON matriculas.IDAluno = Alunos.ID " +
-                "INNER JOIN cursos ON matriculas.IDCurso = Cursos.ID";
+                "INNER JOIN alunos ON matriculas.ID_Aluno = alunos.ID " +
+                "INNER JOIN cursos ON matriculas.ID_Curso = cursos.ID";
         try {
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
@@ -67,8 +67,8 @@ public class MatriculaService {
         alunoService.listarAlunos();
         System.out.println("\nCursos");
         cursoService.consultarTodosCursos();
-        int idAluno=inputService.lerIntDoUsuario("Qual o id do aluno");
-        int idCurso=inputService.lerIntDoUsuario("Qual o id do curso");
+        int idAluno=inputService.lerIntDoUsuario("Digite o id do aluno: ");
+        int idCurso=inputService.lerIntDoUsuario("Digite o id do curso: ");
         matriculaModel.setDataMatricula(LocalDate.now());
         inserirMatricula(idAluno,idCurso,matriculaModel.getDataMatricula());
     }

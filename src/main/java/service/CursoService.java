@@ -74,7 +74,7 @@ public class CursoService {
     }
     public void adicionarCurso() {
         professorService.consultarTodosProfessores();
-        String nome = inputService.lerStringDoUsuario("Digite o nome do Curso: ");
+        String nome = inputService.lerStringDoUsuario("Digite o nome do curso: ");
         int idProf = inputService.lerIntDoUsuario("Digite o id do professor desse curso");
         cursoModel.setNomeCurso(nome);
         inserirCurso(cursoModel.getNomeCurso(), idProf);

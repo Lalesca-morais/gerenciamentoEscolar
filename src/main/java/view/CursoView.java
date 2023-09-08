@@ -37,7 +37,8 @@ public class CursoView {
                     break;
                 }
                 case 5:{
-                    new MenuView();
+                    new MenuView().MenuPrincipal();
+                    break;
                 }
                 default:{
                     System.out.println("Opção inválida, tente novamente!");

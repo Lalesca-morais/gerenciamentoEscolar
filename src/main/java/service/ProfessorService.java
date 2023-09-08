@@ -33,7 +33,6 @@ public class ProfessorService {
         String sql = "SELECT * FROM professores";
         try {
             ResultSet resultSet = statement.executeQuery(sql);
-            System.out.println("=====PROFESSORES=====\n");
             while (resultSet.next()) {
                 System.out.println("ID: " + resultSet.getInt("ID") +
                         " | Nome: " + resultSet.getString("Nome") +
@@ -84,8 +83,8 @@ public class ProfessorService {
     }
     public void alterarInformacoes() {
         consultarTodosProfessores();
-        int id = inputService.lerIntDoUsuario("Qual o ID do Aluno que deseja deletar: ");
-        String disciplina = inputService.lerStringDoUsuario("Qual a novo disciplina: ");
+        int id = inputService.lerIntDoUsuario("Digite o ID do professor que deseja alterar: ");
+        String disciplina = inputService.lerStringDoUsuario("Digite a novo disciplina: ");
         professorModel.setDisciplina(disciplina);
        alterarProfessor(id,professorModel.getDisciplina());
     }

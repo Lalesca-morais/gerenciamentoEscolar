@@ -12,6 +12,7 @@ public class MenuView {
     ProfessorService professorService=new ProfessorService();
     EscolaService escolaService=new EscolaService();
     public void MenuPrincipal() {
+        System.out.println("\nBem vindo ao Instituto Descobertas Ilimitadas!\n");
         System.out.println("1 - Área para Aluno");
         System.out.println("2 - Área para Curso");
         System.out.println("3 - Área para Professor");

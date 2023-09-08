@@ -19,13 +19,13 @@ public class EscolaService {
     public void consultarAlunoPorCurso(int id) {
         String sql = "SELECT alunos.Nome " +
                 "FROM alunos " +
-                "INNER JOIN Matriculas ON alunos.ID = Matriculas.IDaluno " +
-                "INNER JOIN Cursos ON Matriculas.IDCurso = Cursos.ID " +
+                "INNER JOIN Matriculas ON alunos.ID = Matriculas.ID_aluno " +
+                "INNER JOIN Cursos ON Matriculas.ID_Curso = Cursos.ID " +
                 "WHERE Cursos.ID = '" + id + "'";
         try {
             ResultSet resultSet = statement.executeQuery(sql);
+            System.out.println("=====ALUNOS MATRICULADOS NO CURSO=====\n");
             while (resultSet.next()) {
-                System.out.println("=====ALUNOS MATRICULADOS NO CURSO=====\n");
                 System.out.println("Nome: " + resultSet.getString("Nome"));
             }
         } catch (SQLException e) {
@@ -39,8 +39,8 @@ public class EscolaService {
                 "WHERE Professores.ID = '" + id + "'";
         try {
             ResultSet resultSet = statement.executeQuery(sql);
+            System.out.println("=====DISCIPLINAS LECIONADAS POR ESSE PROFESSOR=====\n");
             while (resultSet.next()) {
-                System.out.println("=====DISCIPLINAS LECIONADAS POR ESSE PROFESSOR=====\n");
                 System.out.println("Nome do Curso: " + resultSet.getString("NomeCurso"));
             }
         } catch (SQLException e) {
@@ -50,12 +50,12 @@ public class EscolaService {
     public void consultarAlunosSemMatricula() {
         String sql = "SELECT alunos.Nome " +
                 "FROM alunos " +
-                "LEFT JOIN Matriculas ON alunos.ID = Matriculas.IDaluno " +
-                "WHERE matriculas.IDCurso IS NULL";
+                "LEFT JOIN Matriculas ON alunos.ID = Matriculas.ID_Aluno " +
+                "WHERE matriculas.ID_Curso IS NULL";
         try {
             ResultSet resultSet = statement.executeQuery(sql);
+            System.out.println("=====ALUNOS SEM MATRÍCULA EM NENHUM CURSO=====\n");
             while (resultSet.next()) {
-                System.out.println("=====ALUNOS SEM MATRICULA EM NENHUM CURSO=====\n");
                 System.out.println("Nome do Aluno: " + resultSet.getString("Nome"));
             }
         } catch (SQLException e) {
@@ -65,12 +65,12 @@ public class EscolaService {
     public void consultarCursosSemAlunos() {
         String sql = "SELECT cursos.NomeCurso " +
                 "FROM cursos " +
-                "LEFT JOIN matriculas ON Cursos.ID = matriculas.IDCurso " +
-                "WHERE matriculas.IDaluno IS NULL";
+                "LEFT JOIN matriculas ON cursos.ID = matriculas.ID_Curso " +
+                "WHERE matriculas.ID_Aluno IS NULL";
         try {
             ResultSet resultSet = statement.executeQuery(sql);
+            System.out.println("=====CURSOS SEM MATRÍCULA DE ALUNOS=====\n");
             while (resultSet.next()) {
-                System.out.println("=====CURSOS SEM MATRICULA DE ALUNOS=====");
                 System.out.println("Nome do Curso: " + resultSet.getString("NomeCurso"));
             }
         } catch (SQLException e) {
@@ -80,17 +80,24 @@ public class EscolaService {
     public void consultarAlunosComMaisDeUmCurso() {
         String sql = "SELECT alunos.Nome " +
                 "FROM alunos " +
-                "INNER JOIN Matriculas ON Alunos.ID = Matriculas.IDAluno " +
-                "GROUP BY Alunos.ID, Alunos.Nome " +
-                "HAVING COUNT(Matriculas.IDCurso) > 1";
+                "INNER JOIN Matriculas ON alunos.ID = Matriculas.ID_Aluno " +
+                "GROUP BY alunos.ID, alunos.Nome " +
+                "HAVING COUNT(Matriculas.ID_Curso) > 1";
         try {
             ResultSet resultSet = statement.executeQuery(sql);
+            boolean alunosEncontrados = false;
+
+            System.out.println("=====ALUNOS MATRICULADOS EM MAIS DE UM CURSO=====\n");
             while (resultSet.next()) {
-                System.out.println("=====ALUNOS MATRICULADOS EM MAIS DE UM CURSO=====\n");
+                alunosEncontrados = true;
                 System.out.println("Nome do Aluno: " + resultSet.getString("Nome"));
+            }
+            if (!alunosEncontrados) {
+                System.out.println("Por enquanto não há nenhum aluno cadastrado em mais de um curso.");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
 }

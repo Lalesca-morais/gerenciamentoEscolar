@@ -41,7 +41,7 @@ public class AlunoView {
                     break;
                 }
                 case 5:{
-                    new MenuView();
+                    new MenuView().MenuPrincipal();
                     break;
                 }
                 default: {

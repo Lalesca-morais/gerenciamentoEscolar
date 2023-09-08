@@ -37,8 +37,8 @@ public class ProfessorView {
                     professorService.consultarTodosProfessores();
                     break;
                 }
-                case 0: {
-                    new MenuView();
+                case 5:{
+                    new MenuView().MenuPrincipal();
                     break;
                 }
                 default:{

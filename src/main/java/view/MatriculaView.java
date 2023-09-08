@@ -32,7 +32,7 @@ public class MatriculaView {
                     break;
                 }
                 case 4:{
-                    new MenuView();
+                    new MenuView().MenuPrincipal();
                     break;
                 }
                 default:{
