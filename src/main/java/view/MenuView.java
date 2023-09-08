@@ -11,6 +11,9 @@ public class MenuView {
     InputService inputService = new InputService();
     ProfessorService professorService=new ProfessorService();
     EscolaService escolaService=new EscolaService();
+    public MenuView(){
+        MenuPrincipal();
+    }
     public void MenuPrincipal() {
         System.out.println("\nBem vindo ao Instituto Descobertas Ilimitadas!\n");
         System.out.println("1 - Área para Aluno");
@@ -21,10 +24,9 @@ public class MenuView {
         System.out.println("6 - Sair.");
     }
     public void escolhaPrincipal() {
-        int option;
+        int option = 0;
         do {
-            MenuPrincipal();
-            option = inputService.lerIntDoUsuario("Digite opção desejada: ");
+            option = inputService.lerIntDoUsuario("Digite a opção que deseja: ");
 
             switch (option) {
                 case 1:{
@@ -48,14 +50,14 @@ public class MenuView {
                     break;
                 }
                 case 6:{
-                    new MenuView();
+                    System.out.println("Saindo do sistema...");
                     break;
                 }
                 default:{
                     System.out.println("Opção inválida, tente novamente!");
                 }
             }
-        } while (option != 0);
+        } while (option != 6);
     }
     public void MenuConsulta() {
         System.out.println("\n=====MENU CONSULTA=====\n");
@@ -67,10 +69,12 @@ public class MenuView {
         System.out.println("6 - Voltar ao menu principal.");
     }
     public void outrasOpcoes() {
-        int option;
+        int option = 0;
         do {
-            MenuConsulta();
-            option = inputService.lerIntDoUsuario("Digite opção desejada: ");
+            if(option != 6){
+                MenuConsulta();
+            }
+            option = inputService.lerIntDoUsuario("Digite a opção que deseja: ");
 
             switch (option) {
                 case 1:{
@@ -101,6 +105,6 @@ public class MenuView {
                     System.out.println("Opção inválida, tente novamente!");
                 }
             }
-        } while (option != 0);
+        } while (option != 6);
     }
 }

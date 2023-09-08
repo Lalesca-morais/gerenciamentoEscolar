@@ -14,10 +14,12 @@ public class CursoView {
         System.out.println("5 - Voltar ao menu principal.");
     }
     public void opcoesCurso() {
-        int option;
+        int option = 0;
         do {
-            MenuCurso();
-            option = inputService.lerIntDoUsuario("Qual opção você deseja: ");
+            if(option != 5){
+                MenuCurso();
+            }
+            option = inputService.lerIntDoUsuario("Digite a opção que deseja: ");
 
             switch (option) {
                 case 1:{

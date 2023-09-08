@@ -7,8 +7,7 @@ import java.sql.SQLException;
 public class Conexao {
     public static Connection fazerConexao () {
         try {
-            Connection conexao = DriverManager.getConnection
-                    ("jdbc:postgresql://localhost:5432/escola",
+            Connection conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/escola",
                             "postgres", "1234");
             return conexao;
         } catch (SQLException e) {
@@ -16,5 +15,4 @@ public class Conexao {
             return null;
         }
     }
-
 }

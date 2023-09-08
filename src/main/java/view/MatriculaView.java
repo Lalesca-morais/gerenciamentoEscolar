@@ -13,10 +13,12 @@ public class MatriculaView {
         System.out.println("4 - Voltar ao menu principal.");
     }
     public void opcoesMatricula() {
-        int option;
+        int option = 0;
         do {
-            MenuMatricula();
-            option = inputService.lerIntDoUsuario("Qual opção você deseja: ");
+            if(option != 4){
+                MenuMatricula();
+            }
+            option = inputService.lerIntDoUsuario("Digite a opção que deseja: ");
 
             switch (option) {
                 case 1:{

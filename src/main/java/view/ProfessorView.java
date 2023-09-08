@@ -16,10 +16,13 @@ public class ProfessorView {
         System.out.println("5 - Voltar");
     }
     public void opcoesProfessor() {
-        int option;
+        int option = 0;
         do {
-            MenuProfessor();
-            option = inputService.lerIntDoUsuario("Qual opção você deseja: ");
+            if(option != 5){
+                MenuProfessor();
+            }
+            option = inputService.lerIntDoUsuario("Digite a opção que deseja: ");
+
             switch (option) {
                 case 1:{
                     professorService.adicionarProfessor();

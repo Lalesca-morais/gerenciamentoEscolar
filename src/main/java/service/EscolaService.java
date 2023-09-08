@@ -99,5 +99,4 @@ public class EscolaService {
             e.printStackTrace();
         }
     }
-
 }

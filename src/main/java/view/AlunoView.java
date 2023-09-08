@@ -17,10 +17,13 @@ public class AlunoView {
         System.out.println("4 - Listar Alunos.");
         System.out.println("5 - Voltar ao menu principal.");
     }
+
     public void opcoesAluno() {
-        int option;
+        int option = 0;
         do {
-            MenuAluno();
+            if(option != 5){
+                MenuAluno();
+            }
             option = inputService.lerIntDoUsuario("Digite a opção que deseja: ");
 
             switch (option) {
